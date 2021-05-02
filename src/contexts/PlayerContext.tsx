@@ -12,6 +12,9 @@ interface IPlayerContextData {
   episodeList: IEpisode[];
   currentEpisodeIndex: number;
   isPlaying: boolean;
+  hasPrevious: boolean;
+  hasNext: boolean;
+
   play(episode: IEpisode): void;
   togglePlay(): void;
   setPlayingState(state: boolean): void;
@@ -52,17 +55,18 @@ export function PlayerContextProvider({ children }: IPlayerContextProviderProps)
     setIsPlaying(true)
   }
 
+  const hasPrevious = currentEpisodeIndex > 0;
+  const hasNext = (currentEpisodeIndex + 1) < episodeList.length;
+
   function playNext() {
-    const nextEpisodeIndex = currentEpisodeIndex + 1;
-    if (nextEpisodeIndex < episodeList.length) {
-      setCurrentEpisodeIndex(nextEpisodeIndex)
+    if (hasNext) {
+      setCurrentEpisodeIndex(currentEpisodeIndex + 1)
     }
   }
 
   function playPrevious() {
-    const previousEpisodeIndex = currentEpisodeIndex - 1;
-    if (previousEpisodeIndex >= 0) {
-      setCurrentEpisodeIndex(previousEpisodeIndex)
+    if (hasPrevious) {
+      setCurrentEpisodeIndex(currentEpisodeIndex - 1)
     }
   }
 
@@ -71,6 +75,8 @@ export function PlayerContextProvider({ children }: IPlayerContextProviderProps)
       episodeList,
       currentEpisodeIndex,
       isPlaying,
+      hasPrevious,
+      hasNext,
       play,
       togglePlay,
       setPlayingState,

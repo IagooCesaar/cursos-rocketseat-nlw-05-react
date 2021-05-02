@@ -14,6 +14,8 @@ export function Player() {
     currentEpisodeIndex,
     episodeList,
     isPlaying,
+    hasNext,
+    hasPrevious,
     togglePlay,
     setPlayingState,
     playNext,
@@ -89,7 +91,11 @@ export function Player() {
             <img src="/shuffle.svg" alt="aleatório" />
           </button>
 
-          <button type="button" disabled={!episode} onClick={() => playPrevious()}>
+          <button
+            type="button"
+            disabled={!episode || !hasPrevious}
+            onClick={() => playPrevious()}
+          >
             <img src="/play-previous.svg" alt="anterior" />
           </button>
 
@@ -107,7 +113,11 @@ export function Player() {
 
           </button>
 
-          <button type="button" disabled={!episode} onClick={() => playNext()}>
+          <button
+            type="button"
+            disabled={!episode || !hasNext}
+            onClick={() => playNext()}
+          >
             <img src="/play-next.svg" alt="próximo" />
           </button>
 
