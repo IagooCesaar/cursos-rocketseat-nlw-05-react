@@ -12,6 +12,9 @@ interface IPlayerContextData {
   episodeList: IEpisode[];
   currentEpisodeIndex: number;
   play(episode: IEpisode): void;
+  togglePlay(): void;
+  setPlayingState(state: boolean): void;
+  isPlaying: boolean;
 }
 
 export const PlayerContext = createContext({} as IPlayerContextData)
