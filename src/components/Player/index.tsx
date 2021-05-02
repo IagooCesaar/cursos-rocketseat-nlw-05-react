@@ -126,7 +126,12 @@ export function Player() {
             <img src="/play-next.svg" alt="próximo" />
           </button>
 
-          <button type="button" disabled={!episode} onClick={() => toggleLoop()}>
+          <button
+            type="button"
+            disabled={!episode}
+            onClick={() => toggleLoop()}
+            className={isLooping ? styles.isActive : ''}
+          >
             <img src="/repeat.svg" alt="repetir" />
           </button>
 
