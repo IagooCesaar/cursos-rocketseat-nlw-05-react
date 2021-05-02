@@ -1,4 +1,4 @@
-import { createContext, useState, ReactNode } from 'react'
+import { createContext, useState, ReactNode, useContext } from 'react'
 
 interface IEpisode {
   title: string;
@@ -28,6 +28,10 @@ interface IPlayerContextProviderProps {
 }
 
 export const PlayerContext = createContext({} as IPlayerContextData)
+
+export const usePlayerContext = () => {
+  return useContext(PlayerContext)
+}
 
 export function PlayerContextProvider({ children }: IPlayerContextProviderProps) {
   const [episodeList, setEpisodeList] = useState([])
