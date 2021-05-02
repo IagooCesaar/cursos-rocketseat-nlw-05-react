@@ -38,6 +38,11 @@ export function Player() {
     })
   }
 
+  function handleSeek(amount: number) {
+    audioRef.current.currentTime = amount;
+    setProgress(amount)
+  }
+
   useEffect(() => {
     if (!audioRef.current) {
       return;
@@ -86,6 +91,7 @@ export function Player() {
                 trackStyle={{ backgroundColor: '#04d361' }}
                 railStyle={{ backgroundColor: '#9f75ff' }}
                 handleStyle={{ borderColor: '#04d361' }}
+                onChange={handleSeek}
               />
             ) : (
               <div className={styles.emptySlider} />
