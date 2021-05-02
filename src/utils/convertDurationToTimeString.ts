@@ -3,9 +3,9 @@ export function convertDurationToTimeSting(duration: number): string {
   const oneHour = 60 * 60;
   const hours = Math.floor(duration / oneHour);
   const minutes = Math.floor((duration % oneHour) / 60)
-  const secondes = duration % 60;  
+  const seconds = Math.floor(duration % 60);
 
-  const timeString = [hours, minutes, secondes]
+  const timeString = [hours, minutes, seconds]
     .map(
       unit => String(unit).padStart(2, '0')
     )
