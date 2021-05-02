@@ -16,7 +16,10 @@ export function Player() {
     isPlaying,
     hasNext,
     hasPrevious,
+    isLooping,
+
     togglePlay,
+    toggleLoop,
     setPlayingState,
     playNext,
     playPrevious
@@ -82,6 +85,7 @@ export function Player() {
             src={episode.url}
             ref={audioRef}
             autoPlay
+            loop={isLooping}
             onPlay={() => setPlayingState(true)}
             onPause={() => setPlayingState(false)}
           />
@@ -122,7 +126,7 @@ export function Player() {
             <img src="/play-next.svg" alt="próximo" />
           </button>
 
-          <button type="button" disabled={!episode}>
+          <button type="button" disabled={!episode} onClick={() => toggleLoop()}>
             <img src="/repeat.svg" alt="repetir" />
           </button>
 
