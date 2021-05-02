@@ -17,9 +17,11 @@ export function Player() {
     hasNext,
     hasPrevious,
     isLooping,
+    isShuffling,
 
     togglePlay,
     toggleLoop,
+    toggleShuffle,
     setPlayingState,
     playNext,
     playPrevious
@@ -92,7 +94,12 @@ export function Player() {
         )}
 
         <div className={styles.buttons}>
-          <button type="button" disabled={!episode}>
+          <button
+            type="button"
+            disabled={!episode || episodeList.length === 1}
+            onClick={() => toggleShuffle()}
+            className={isShuffling ? styles.isActive : ''}
+          >
             <img src="/shuffle.svg" alt="aleatório" />
           </button>
 
@@ -120,7 +127,7 @@ export function Player() {
 
           <button
             type="button"
-            disabled={!episode || !hasNext}
+            disabled={!episode || isShuffling ? false : !hasNext}
             onClick={() => playNext()}
           >
             <img src="/play-next.svg" alt="próximo" />
