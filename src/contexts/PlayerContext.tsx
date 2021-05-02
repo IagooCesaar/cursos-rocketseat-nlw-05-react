@@ -82,8 +82,12 @@ export function PlayerContextProvider({ children }: IPlayerContextProviderProps)
       setCurrentEpisodeIndex(nextRandomEpisodeIndex)
     } else if (hasNext) {
       setCurrentEpisodeIndex(currentEpisodeIndex + 1)
+    } else {
+      setEpisodeList([]);
+      setCurrentEpisodeIndex(0)
     }
   }
+
 
   function playPrevious() {
     if (hasPrevious) {
