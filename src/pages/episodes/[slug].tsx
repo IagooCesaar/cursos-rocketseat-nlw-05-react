@@ -2,8 +2,6 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { useRouter } from 'next/router'
-
 import { format, parseISO } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 
@@ -11,6 +9,7 @@ import { api } from '../../services/api'
 import { convertDurationToTimeSting } from '../../utils/convertDurationToTimeString'
 
 import styles from './episode.module.scss'
+import { usePlayerContext } from '../../contexts/PlayerContext'
 
 interface IEpisode {
   id: string;
@@ -30,7 +29,7 @@ interface IEpisodeProps {
 
 
 export default function Episode({ episode }: IEpisodeProps) {
-  const router = useRouter()
+  const { play } = usePlayerContext();
   return (
     <div className={styles.episodeContainer}>
       <div className={styles.thumbnailContainer}>
@@ -47,7 +46,7 @@ export default function Episode({ episode }: IEpisodeProps) {
           objectFit='cover'
         />
 
-        <button type='button'>
+        <button type='button' onClick={() => play(episode)}>
           <img src="/play.svg" alt="Tocar episódio" />
         </button>
       </div>
